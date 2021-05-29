@@ -118,7 +118,7 @@ export const LoginAdmin = () => {
                             </div>
                             <div className="font-1rem" >
                                 Bạn là học viên của MEEC?
-                                <Link to="https://meec.vercel.app/login"  className="text-secondary font-weight-bold pointer" > Đăng nhập</Link>
+                                <a href="https://meec.vercel.app/login"  className="text-secondary font-weight-bold pointer" > Đăng nhập</a>
                             </div>
                         </div>
                         
