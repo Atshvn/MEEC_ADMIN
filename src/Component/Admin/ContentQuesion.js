@@ -34,7 +34,6 @@ export const ContentQuestion = () => {
         try {
             //const params = { _page: 1, _limit: 10 };
             const response = await QuestionAPI.getAll();
-            console.log('Fetch  successfully: ', response);
             const datanew = response.map(i => {
                 return {
                     ...i,
@@ -96,7 +95,6 @@ export const ContentQuestion = () => {
         try {
             //const params = { _page: 1, _limit: 10 };
             const response = await QuestionAPI.post(obj);
-            console.log('Fetch  successfully: ', response);
             Alertsuccess("Lưu thành công")
         } catch (error) {
             Alerterror("Lỗi")
@@ -116,7 +114,6 @@ export const ContentQuestion = () => {
         try {
             //const params = { _page: 1, _limit: 10 };
             const response = await QuestionAPI.put({ id: ID }, obj);
-            console.log('Fetch  successfully: ', response);
             Alertsuccess("Cập nhật thành công")
         } catch (error) {
             Alerterror("Lỗi")
@@ -127,7 +124,6 @@ export const ContentQuestion = () => {
         try {
             //const params = { _page: 1, _limit: 10 };
             const response = await QuestionAPI.delete({ id: Id });
-            console.log('Fetch  successfully: ', response);
             Alertsuccess("Xóa thành công");
             const newData = data.filter(i => i.questionId !== Id);
             setData(newData)
@@ -279,7 +275,6 @@ export const ContentQuestion = () => {
             })
 
             setDataExcel(x);
-            console.log(datae);
             if(x[0]?.content){
                 CheckData(x) 
             }
@@ -314,7 +309,6 @@ export const ContentQuestion = () => {
         try {
             setDisableBtn(true)
             const response = await QuestionAPI.postMutil(pr);
-            console.log('Fetch  successfully: ', response);
             Alertsuccess("Upload excel thành công");
             handleDelete();
             MEEC_Question_List();

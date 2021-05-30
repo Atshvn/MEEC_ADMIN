@@ -1,6 +1,6 @@
 import { Route, Switch, BrowserRouter, Redirect } from 'react-router-dom';
 import { ForgotPass, Login , Page404, Signup, LoginAdmin} from '../Component/System';
-import { HomeAdmin, Question, TestManager, WelCome } from '../Component/Admin';
+import { HomeAdmin, Mail, ManageResult, Question, TestManager, WelCome } from '../Component/Admin';
 import { CourseManage } from '../Component/Admin/CourseManage';
 import ScrollToTop from '../Commom/ScrollToTop';
 import { AdminRoute } from './AdminRoute';
@@ -38,7 +38,8 @@ export const Routers = () => {
             <AdminRoute  path="/test" component={TestManager} />
             <AdminRoute  path="/course" component={CourseManage} />
             <AdminRoute  path="/welcome" component={WelCome} />
-
+            <AdminRoute  path="/result" component={ManageResult} />
+            <AdminRoute  path="/mail" component={Mail} />
             <Route  component={Page404}/>
         </Switch>
         {/* <Route path="/" component={Foodter}/> */}

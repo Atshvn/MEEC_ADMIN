@@ -10,7 +10,6 @@ export const ContentAccount = () => {
         try {
             //const params = { _page: 1, _limit: 10 };
             const response = await SystemAPI.getAll();
-            console.log('Fetch  successfully: ', response);
             const x = response.map(i => {
                 const phone = i.phoneNumber == 0 ? i.phoneNumber : `0${i.phoneNumber}`
                 return {...i, dateOfBirth: FormatDate(i.dateOfBirth), phoneNumber: phone}
@@ -28,10 +27,8 @@ export const ContentAccount = () => {
         try {
             //const params = { _page: 1, _limit: 10 };
             const response = await SystemAPI.accByCourse(id);
-            console.log('Fetch  successfully: ', response);
             const x = response.map(i => {
                 const phone = i.phoneNumber == 0 ? i.phoneNumber : `0${i.phoneNumber}`
-                console.log(i.phoneNumber)
                 return {...i, dateOfBirth: FormatDate(i.dateOfBirth), phoneNumber: phone}
             })
             setDataAll(x)

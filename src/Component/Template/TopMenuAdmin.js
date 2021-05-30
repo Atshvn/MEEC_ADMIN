@@ -95,6 +95,16 @@ export const TopMenuAdmin = () => {
                                     <span> Quản lý khóa học </span>
                                     <span className="menu-arrow" />
                                 </Link>
+                                <Link to="/result" className="waves-effect">
+                                    <i className="ion-md-basket" />
+                                    <span>Kết quả thi</span>
+                                    <span className="menu-arrow" />
+                                </Link>
+                                <Link to="/mail" className="waves-effect">
+                                    <i className="ion-md-basket" />
+                                    <span>Ý kiến học viên</span>
+                                    <span className="menu-arrow" />
+                                </Link>
                                
                             </li>
                             

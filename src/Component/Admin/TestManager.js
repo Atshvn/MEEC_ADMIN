@@ -40,7 +40,6 @@ export const TestManager = () => {
         try {
             //const params = { _page: 1, _limit: 10 };
             const response = await CourseAPI.getAll();
-            console.log('List: ', response);
 
             setDataCourse(response)
         } catch (error) {
@@ -73,7 +72,6 @@ export const TestManager = () => {
         }
     }
     const MEEC_Test_List_ByCourse = async () => {
-        console.log(CourseSearch)
         try {
             const response = await TestAPI.getByCourse(CourseSearch);
             const newData = response.map(item => {
@@ -100,29 +98,29 @@ export const TestManager = () => {
             return MEEC_Test_List_ByCourse();
         }
     }
-    const MEEC_TestUnFinish_List = async () => {
-        try {
-            //const params = { _page: 1, _limit: 10 };
-            const response = await TestAPI.getUnfinished();
-            console.log('Unfinish: ', response);
+    // const MEEC_TestUnFinish_List = async () => {
+    //     try {
+    //         //const params = { _page: 1, _limit: 10 };
+    //         const response = await TestAPI.getUnfinished();
+    //         console.log('Unfinish: ', response);
 
-            setDataUnfinish(response)
-        } catch (error) {
-            console.log('Failed to fetch: ', error);
-        }
-    }
-    const MEEC_TestFinish_List = async () => {
-        try {
-            //const params = { _page: 1, _limit: 10 };
-            const response = await TestAPI.getFinish();
-            console.log('Finish: ', response);
+    //         setDataUnfinish(response)
+    //     } catch (error) {
+    //         console.log('Failed to fetch: ', error);
+    //     }
+    // }
+    // const MEEC_TestFinish_List = async () => {
+    //     try {
+    //         //const params = { _page: 1, _limit: 10 };
+    //         const response = await TestAPI.getFinish();
+    //         console.log('Finish: ', response);
 
-            setDataFinish(response)
-        } catch (error) {
-            console.log('Failed to fetch: ', error);
-        }
-    }
-    //#endregion
+    //         setDataFinish(response)
+    //     } catch (error) {
+    //         console.log('Failed to fetch: ', error);
+    //     }
+    // }
+    // //#endregion
 
     const MEEC_Test_Save = async () => {
         if (TestName === "") {
@@ -165,11 +163,9 @@ export const TestManager = () => {
             createsby: "TA"
 
         }
-        console.log(obj)
         try {
             //const params = { _page: 1, _limit: 10 };
             const response = await TestAPI.post(obj);
-            console.log('Fetch  successfully: ', response);
             Alertsuccess("Lưu thành công");
             setDisableBtn(false)
         } catch (error) {
@@ -183,7 +179,6 @@ export const TestManager = () => {
         try {
             //const params = { _page: 1, _limit: 10 };
             const response = await TestAPI.delete(Id);
-            console.log('Fetch  successfully: ', response);
             Alertsuccess("Xóa thành công");
             const newData = data.filter(i => i.testId !== Id);
             setData(newData)
@@ -224,7 +219,6 @@ export const TestManager = () => {
         try {
             //const params = { _page: 1, _limit: 10 };
             const response = await TestAPI.put(ID, obj);
-            console.log('Fetch  successfully: ', response);
             Alertsuccess("Cập nhật thành công");
             setEdit(false)
             MEEC_Course_List();

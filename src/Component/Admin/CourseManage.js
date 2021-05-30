@@ -32,7 +32,6 @@ export const CourseManage = () => {
         try {
             //const params = { _page: 1, _limit: 10 };
             const response = await CourseAPI.getAll();
-            console.log('List: ', response);
 
             setData(response)
         } catch (error) {
@@ -70,7 +69,6 @@ export const CourseManage = () => {
         try {
             //const params = { _page: 1, _limit: 10 };
             const response = await CourseAPI.post(obj);
-            console.log('Fetch  successfully: ', response);
             Alertsuccess("Lưu thành công");
             setDisableBtn(false)
             MEEC_Course_List();
@@ -85,7 +83,6 @@ export const CourseManage = () => {
         try {
             //const params = { _page: 1, _limit: 10 };
             const response = await CourseAPI.delete(Id);
-            console.log('Fetch  successfully: ', response);
             Alertsuccess("Xóa thành công");
             const newData = data.filter(i => i.courseId !== Id);
             setData(newData)
@@ -104,7 +101,6 @@ export const CourseManage = () => {
         try {
             //const params = { _page: 1, _limit: 10 };
             const response = await CourseAPI.put({ Id: ID }, obj);
-            console.log('Fetch  successfully: ', response);
             Alertsuccess("Cập nhật thành công");
             setEdit(false)
             MEEC_Course_List();

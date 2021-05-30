@@ -25,6 +25,10 @@ export const SystemAPI = {
         const url = `/account`;
         return axiosClient.get(url, {params});
     },
+    getMailbox:  (params) => {
+        const url = '/mailboxs';
+        return axiosClient.get(url, {params});
+    }
 
 
 }

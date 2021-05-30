@@ -309,6 +309,7 @@ body {
 *::-webkit-scrollbar
 {
 	width: 10px;
+  height: 10px;
 	background-color: #F5F5F5;
 }
 
