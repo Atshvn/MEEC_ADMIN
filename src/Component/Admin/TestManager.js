@@ -157,7 +157,7 @@ export const TestManager = () => {
             Alertwarning("Hãy chọn khóa học")
             return
         }
-
+        setEdit(false)
         setDisableBtn(true)
         const obj = {
             testName: TestName,
@@ -165,9 +165,10 @@ export const TestManager = () => {
             dateTest: FormatDateJson(TestDate, 0),
             time: +TestTime,
             totalQuestion: +TotalQuestion,
-            createsby: "TA"
+            createsby: "admin"
 
         }
+      
         try {
             //const params = { _page: 1, _limit: 10 };
             const response = await TestAPI.post(obj);
