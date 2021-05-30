@@ -154,7 +154,7 @@ export const ManageResult = () => {
                                                 <div className="card-header p-0 pl-2  bg-i ">
                                                     <div class="row">
                                                         <div class="col-sm-12 col-md-6 d-flex align-items-center" >
-                                                            <h3 className="color-white card-title font-weight-bold align-middle mb-0">Danh sách kết quả thi</h3>
+                                                            <h3 className="color-white card-title font-weight-bold align-middle mb-0">DANH SÁCH KẾT QUẢ THI</h3>
                                                         </div>
 
                                                         <div class="col-sm-12 col-md-6 margin-top-5s pt-1 pb-1">
