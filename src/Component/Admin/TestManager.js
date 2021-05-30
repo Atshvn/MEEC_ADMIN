@@ -157,7 +157,7 @@ export const TestManager = () => {
         const obj = {
             testName: TestName,
             courseId: CourseID,
-            dateTest: FormatDateJson(TestDate, 1),
+            dateTest: FormatDateJson(TestDate, 0),
             time: +TestTime,
             totalQuestion: +TotalQuestion,
             createsby: "TA"
