@@ -57,6 +57,10 @@ export const TestAPI = {
         const url = `/result/test/${id}`;
         return axiosClient.get(url);
     },
+    lockTest:  (id) => {
+        const url = `/Test/admin/closed/${id}`;
+        return axiosClient.get(url);
+    },
     // getTestActive: (params) => {
     //     const url = '/test/new';
     //     return axiosClient.get(url, { params });

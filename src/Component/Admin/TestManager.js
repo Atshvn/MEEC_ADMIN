@@ -29,10 +29,10 @@ export const TestManager = () => {
 
 
     const [data, setData] = useState([])
-    const [dataUnfinish, setDataUnfinish] = useState([])
-    const [dataFinish, setDataFinish] = useState([])
+
 
     const [CourseSearch, setCourseSearch] = useState(0);
+    const [CourseSearch2, setCourseSearch2] = useState(0);
     const [DataCourse, setDataCourse] = useState([]);
     const [Edit, setEdit] = useState(false)
 
@@ -40,7 +40,6 @@ export const TestManager = () => {
         try {
             //const params = { _page: 1, _limit: 10 };
             const response = await CourseAPI.getAll();
-
             setDataCourse(response)
         } catch (error) {
             console.log('Failed to fetch: ', error);
@@ -63,8 +62,6 @@ export const TestManager = () => {
                     dateTest: FormatDate(item.dateTest),
                     Status: Status
                 }
-
-
             })
             setData(newData)
         } catch (error) {
@@ -214,6 +211,7 @@ export const TestManager = () => {
         setID(0);
 
     }
+
     const MEEC_Test_Edit = async () => {
         setEdit(true)
         const obj = {
@@ -237,6 +235,77 @@ export const TestManager = () => {
 
     const HandleSave = () => {
         Edit ? MEEC_Test_Edit() : MEEC_Test_Save();
+    }
+
+    const [dataLock, setDataLock] = useState([])
+
+    const MEEC_Test_ListNew = async () => {
+        try {
+            const response = await TestAPI.getUnfinished();
+            const newData = response.map(item => {
+                const itemNew = filterItem(item.courseId);
+                const Status = item.state ? "Chưa thi" : "Đã thi";
+                return {
+                    ...item,
+                    courseName: itemNew[0].name,
+                    dateTest: FormatDate(item.dateTest),
+                    Status: Status
+                }
+            })
+            setDataLock(newData)
+        } catch (error) {
+            console.log('Failed to fetch: ', error);
+        }
+    }
+    const MEEC_Test_ListNew_ByCourse = async () => {
+        try {
+            const response = await TestAPI.getNew({courseId : CourseSearch2});
+            const newData = response.map(item => {
+                const itemNew = filterItem(item.courseId);
+                const Status = item.state ? "Chưa thi" : "Đã thi";
+                return {
+                    ...item,
+                    courseName: itemNew[0].name,
+                    dateTest: FormatDate(item.dateTest),
+                    Status: Status
+                }
+            })
+            setDataLock(newData)
+        } catch (error) {
+            console.log('Failed to fetch: ', error);
+        }
+    }
+
+    const HandleList2 = () => {
+        setDataLock([])
+        if (CourseSearch2 === 0) {
+            MEEC_Test_ListNew();
+        }
+        else {
+            MEEC_Test_ListNew_ByCourse();
+        }
+    }
+
+
+    const MEEC_Test_Close = async (id) => {
+        try {
+            const res = await TestAPI.lockTest(id)
+            if(res === 'Success'){
+                Alertsuccess("Khoá test thành công")
+                const newData = dataLock.filter(i => i.testId !== id);
+                setDataLock(newData)
+                return
+            }
+            else{
+                Alerterror("Đã có lỗi xảy ra, vui lòng thử lại sau")
+                return
+            }
+            
+        } catch (error) {
+            console.log(error)
+            Alerterror("Đã có lỗi xảy ra, vui lòng thử lại sau")
+        }
+
     }
 
 
@@ -311,6 +380,58 @@ export const TestManager = () => {
     })
     //#endregion
 
+     //#region Table2
+     const columns2 = [
+        {
+            Header: "Tùy chọn",
+            accessor: '[row identifier to be passed to button]',
+            fixed: 'left',
+            minWidth: 80,
+            Cell: ({ row }) => (<span><button
+                    className="btn btn-sm btn-danger" onClick={e => clickDelete2({ row })}> <i class="fas fa-lock pr-2"></i>Khóa
+                </button></span>)
+        },
+        {
+            Header: "Tên bài kiểm tra",
+            accessor: "testName",
+            minWidth: 200
+        },
+        {
+            Header: "Thuộc khóa",
+            accessor: "courseName",
+            minWidth: 200
+        },
+        {
+            Header: "Thời lượng thi (phút)",
+            accessor: "time",
+            minWidth: 150
+        },
+        {
+            Header: "Số lượng câu hỏi",
+            accessor: "totalQuestion",
+            minWidth: 150
+
+        },
+        {
+            Header: "Ngày thi",
+            accessor: "dateTest",
+            minWidth: 100
+
+        },
+        {
+            Header: "Tình trạng",
+            accessor: "Status",
+            minWidth: 100
+
+        }
+    ];
+    
+    const clickDelete2 = (item) => {
+       
+        MEEC_Test_Close(item.row._original.testId);
+    }
+    //#endregion
+
     return (
         <div className="unsticky-layout">
             <TopMenuAdmin />
@@ -330,7 +451,13 @@ export const TestManager = () => {
                                         <li class="nav-item">
                                             <a href="#profile" data-toggle="tab" aria-expanded="true" class="nav-link ">
                                                 <span class="d-block d-sm-none"><i class="mdi mdi-account-outline font-18"></i></span>
-                                                <span class="d-none d-sm-block">Danh sách bài kiểm tra</span>
+                                                <span class="d-none d-sm-block">Danh sách bài thi</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#close" data-toggle="tab" aria-expanded="true" class="nav-link ">
+                                                <span class="d-block d-sm-none"><i class="mdi mdi-account-outline font-18"></i></span>
+                                                <span class="d-none d-sm-block">Đóng - Kết thúc bài thi</span>
                                             </a>
                                         </li>
 
@@ -454,7 +581,44 @@ export const TestManager = () => {
                                             </div>
                                         </div>
 
+                                        <div class="tab-pane " id="close">
+                                            <div className="card bx">
+                                                <div className="card-header p-0 pl-2  bg-i ">
+                                                    <div class="row">
+                                                        <div class="col-sm-12 col-md-6 d-flex align-items-center" >
+                                                            <h3 className="color-white card-title font-weight-bold align-middle mb-0">QUẢN LÝ ĐÓNG BÀI THI</h3>
+                                                        </div>
 
+                                                        <div class="col-sm-12 col-md-6 margin-top-5s pt-1 pb-1">
+                                                           
+                                                            <button type="button" class="btn btn-sm bg-c pull-right mr-2" onClick={HandleList2} >
+                                                                <i class="fa fa-eye pr-2"></i>
+                                                        Xem
+                                                    </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="card-body w-50 m-auto">
+                                                    <div class="form-group">
+                                                        <label class="label mb-0">Khóa học</label>
+                                                        <div class="input-group">
+                                                            <SelectCourse
+                                                                onSelected={e => setCourseSearch2(e.value)}
+                                                                items={CourseSearch2}
+                                                                font="font-16"
+                                                                title="Chọn tất cả">
+                                                            </SelectCourse>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="table-responsive font-16" style={{ color: '#555', zIndex: '0' }}>
+                                                    <DataTable
+                                                        data={dataLock}
+                                                        columns={columns2}
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
