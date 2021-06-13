@@ -297,7 +297,8 @@ export const ContentAccount = () => {
             gender: Gender.label,
             address: Address,
             roleId: Role.value,
-            courseId: Role.value === 1 ? 1 : SelectCourseId
+            courseId: Role.value === 1 ? 1 : SelectCourseId,
+            passWord: PassWord
         }
         try {
             //const params = { _page: 1, _limit: 10 };
