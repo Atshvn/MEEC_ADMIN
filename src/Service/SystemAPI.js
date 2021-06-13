@@ -28,7 +28,15 @@ export const SystemAPI = {
     getMailbox:  (params) => {
         const url = '/mailboxs';
         return axiosClient.get(url, {params});
-    }
+    },
+    addAcc : (data) => {
+        const url = '/Account/admin/add';
+        return axiosClient.post(url, data);
+    },
+    activeAcc : (id) => {
+        const url = `/Account/active/${id}`;
+        return axiosClient.get(url);
+    },
 
 
 }

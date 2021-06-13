@@ -603,3 +603,6 @@ label, .text-input{
 }.bg-c2{
   background-color: #E8F6F0;
 }
+.label {
+  color: #3F3F7A;
+}

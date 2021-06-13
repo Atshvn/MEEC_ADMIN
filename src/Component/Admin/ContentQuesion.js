@@ -164,7 +164,7 @@ export const ContentQuestion = () => {
 
     //#region Table
     const columns = [
-        {
+      {
             Header: "Tùy chọn",
             accessor: '[row identifier to be passed to button]',
             fixed: 'left',
@@ -174,11 +174,18 @@ export const ContentQuestion = () => {
                 </button><button
                     className="btn btn-sm btn-danger" onClick={e => clickDelete({ row })}>Xóa
                 </button></span>)
+        },  
+        {
+            Header: "STT",
+            accessor: "content",
+            width: 50,
+            Cell: (row) => <span>{row.index + 1}</span>,
+            
         },
         {
             Header: "Nội dung",
             accessor: "content",
-            width: 400
+            width: 400,
         },
         {
             Header: "Đáp án 1",
@@ -362,7 +369,7 @@ export const ContentQuestion = () => {
                                                 <div className="row ">
                                                     <div class="col-sm-12 col-md-12">
                                                         <div class="form-group">
-                                                            <label class="label mb-0">Câu hỏi</label>
+                                                            <label class="label mb-0">Câu hỏi<sup className="cl-d">(*)</sup></label>
                                                             <div class="input-group">
                                                                 <input type="text" class="form-control back-ground text-input"
                                                                     ref={ContentRef} value={Content} onChange={e => setContent(e.target.value)} />
@@ -371,7 +378,7 @@ export const ContentQuestion = () => {
                                                     </div>
                                                     <div class="col-sm-12 col-md-2">
                                                         <div class="form-group">
-                                                            <label class="label mb-0">Đáp án A</label>
+                                                            <label class="label mb-0">Đáp án A<sup className="cl-d">(*)</sup></label>
                                                             <div class="input-group">
                                                                 <input type="text" class="form-control back-ground"
                                                                     ref={ARef} value={answerA} onChange={e => setA(e.target.value)} />
@@ -380,7 +387,7 @@ export const ContentQuestion = () => {
                                                     </div>
                                                     <div class="col-sm-12 col-md-2">
                                                         <div class="form-group">
-                                                            <label class="label mb-0">Đáp án B</label>
+                                                            <label class="label mb-0">Đáp án B<sup className="cl-d">(*)</sup></label>
                                                             <div class="input-group">
                                                                 <input type="text" class="form-control back-ground"
                                                                     ref={BRef} value={answerB} onChange={e => setB(e.target.value)} />
@@ -389,7 +396,7 @@ export const ContentQuestion = () => {
                                                     </div>
                                                     <div class="col-sm-12 col-md-2">
                                                         <div class="form-group">
-                                                            <label class="label mb-0">Đáp án C</label>
+                                                            <label class="label mb-0">Đáp án C<sup className="cl-d">(*)</sup></label>
                                                             <div class="input-group">
                                                                 <input type="text" class="form-control back-ground"
                                                                     ref={CRef} value={answerC} onChange={e => setC(e.target.value)} />
@@ -398,7 +405,7 @@ export const ContentQuestion = () => {
                                                     </div>
                                                     <div class="col-sm-12 col-md-2">
                                                         <div class="form-group">
-                                                            <label class="label mb-0">Đáp án D</label>
+                                                            <label class="label mb-0">Đáp án D<sup className="cl-d">(*)</sup></label>
                                                             <div class="input-group">
                                                                 <input type="text" class="form-control back-ground"
                                                                     ref={DRef} value={answerD} onChange={e => setD(e.target.value)} />
@@ -407,7 +414,7 @@ export const ContentQuestion = () => {
                                                     </div>
                                                     <div class="col-sm-12 col-md-4">
                                                         <div class="form-group">
-                                                            <label class="label mb-0">Đáp án đúng</label>
+                                                            <label class="label mb-0">Đáp án đúng<sup className="cl-d">(*)</sup></label>
                                                             <div class="input-group">
                                                                 <input type="text" class="form-control back-ground"
                                                                     ref={CorrectRef} value={Correct} onChange={e => setCorrect(e.target.value)} />

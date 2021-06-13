@@ -20,7 +20,6 @@ export const ManageResult = () => {
             return MEEC_Test_List_ByCourse();
         }
     }, [CourseSearch])
-    const [ID, setID] = useState(0);
 
 
 
@@ -43,9 +42,12 @@ export const ManageResult = () => {
 
     //#region List
     const MEEC_Test_List = async () => {
+        setTestId({value: 0, label: 'Vui lòng chọn'})
         try {
             const response = await TestAPI.getAll();
+            const d ={value: 0, label: 'Vui lòng chọn'};
             let dataSelect = [];
+            dataSelect.push(d)
             response.forEach((element, index) => {
                 dataSelect.push({ value: element.testId, label: element.testName });
             });
@@ -56,9 +58,12 @@ export const ManageResult = () => {
     }
 
     const MEEC_Test_List_ByCourse = async () => {
+        setTestId({value: 0, label: 'Vui lòng chọn'})
         try {
             const response = await TestAPI.getByCourse(CourseSearch);
+            const d ={value: 0, label: 'Vui lòng chọn'};
             let dataSelect = [];
+            dataSelect.push(d)
             response.forEach((element, index) => {
                 dataSelect.push({ value: element.testId, label: element.testName });
             });
@@ -74,6 +79,10 @@ export const ManageResult = () => {
     }
 
     const MEEC_Result_List =  async () => {
+        if(TestId.value ===0){
+            Alertwarning("Vui lòng chọn bài thi")
+            return
+        }
         try {
             const res  =  await TestAPI.getResultList(TestId.value)
             if(res.length == 0){
@@ -90,7 +99,13 @@ export const ManageResult = () => {
 
     //#region Table
     const columns = [
-       
+        {
+            Header: "STT",
+            accessor: "content",
+            width: 50,
+            Cell: (row) => <span>{row.index + 1}</span>,
+            
+        },
         {
             Header: "Tên bài kiểm tra",
             accessor: "testName",
@@ -200,7 +215,7 @@ export const ManageResult = () => {
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div className="table-responsive font-16" style={{ color: '#555', zIndex: '0' }}>
+                                                <div className={dataGr.length > 0 ? "table-responsive font-16" : "display-none"} style={{ color: '#555', zIndex: '0' }}>
                                                     <DataTable
                                                         data={dataGr}
                                                         columns={columns}

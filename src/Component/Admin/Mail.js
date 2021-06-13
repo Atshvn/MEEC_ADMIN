@@ -32,7 +32,12 @@ export const Mail = () => {
 
     //#region Table
     const columns = [
-       
+       { Header: "STT",
+        accessor: "content",
+        width: 50,
+        Cell: (row) => <span>{row.index + 1}</span>,
+        
+    },
         {
             Header: "Tên người góp ý",
             accessor: "fullName",
@@ -92,7 +97,7 @@ export const Mail = () => {
                                         <li class="nav-item">
                                             <a href="#profile" data-toggle="tab" aria-expanded="true" class="nav-link active">
                                                 <span class="d-block d-sm-none"><i class="mdi mdi-account-outline font-18"></i></span>
-                                                <span class="d-none d-sm-block">Danh sách ý kiến của học viên</span>
+                                                <span class="d-none d-sm-block">Danh sách góp ý và tư vấn</span>
                                             </a>
                                         </li>
 
@@ -104,7 +109,7 @@ export const Mail = () => {
                                                 <div className="card-header p-0 pl-2  bg-i ">
                                                     <div class="row">
                                                         <div class="col-sm-12 col-md-6 d-flex align-items-center" >
-                                                            <h3 className="color-white card-title font-weight-bold align-middle mb-0">DANH SÁCH Ý KIẾN CỦA HỌC VIÊN</h3>
+                                                            <h3 className="color-white card-title font-weight-bold align-middle mb-0">DANH SÁCH GÓP Ý VÀ TƯ VẤN TỪ KHÁCH HÀNG</h3>
                                                         </div>
 
                                                         <div class="col-sm-12 col-md-6 margin-top-5s pt-1 pb-1">
@@ -120,14 +125,14 @@ export const Mail = () => {
                                                     </div>
                                                 </div>
                                                 <div className="card-body ">
-                                                   
-                                                </div>
                                                 <div className="table-responsive font-16" style={{ color: '#555', zIndex: '0' }}>
                                                     <DataTable
                                                         data={data}
                                                         columns={columns}
                                                     />
                                                 </div>
+                                                </div>
+                                              
                                             </div>
                                         </div>
 

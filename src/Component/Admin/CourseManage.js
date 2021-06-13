@@ -148,6 +148,13 @@ export const CourseManage = () => {
                 </button><button
                     className="btn btn-sm btn-danger" onClick={e => clickDelete({ row })}>Xóa
                 </button></span>)
+        },  
+        {
+            Header: "STT",
+            accessor: "content",
+            width: 50,
+            Cell: (row) => <span>{row.index + 1}</span>,
+            
         },
         {
             Header: "Tên khóa học",
@@ -222,7 +229,7 @@ export const CourseManage = () => {
                                                     <div className="row ">
                                                         <div class="col-sm-12 col-md-6">
                                                             <div class="form-group">
-                                                                <label class="label mb-0">Tên khóa học</label>
+                                                                <label class="label mb-0">Tên khóa học<sup className="cl-d">(*)</sup></label>
                                                                 <div class="input-group">
                                                                     <input type="text" class="form-control back-ground"
                                                                         ref={CourseNameRef} value={CourseName} onChange={e => setCourseName(e.target.value)} />
@@ -231,7 +238,7 @@ export const CourseManage = () => {
                                                         </div>
                                                         <div class="col-sm-12 col-md-6">
                                                             <div class="form-group">
-                                                                <label class="label mb-0">Thời lượng khóa học (giờ)</label>
+                                                                <label class="label mb-0">Thời lượng khóa học (giờ)<sup className="cl-d">(*)</sup></label>
                                                                 <div class="input-group">
                                                                     <input type="number" class="form-control back-ground"
                                                                         ref={CourseTimeRef} value={CourseTime} onChange={e => setCourseTime(e.target.value)} />
@@ -240,7 +247,7 @@ export const CourseManage = () => {
                                                         </div>
                                                         <div class="col-sm-12 col-md-12">
                                                             <div class="form-group">
-                                                                <label class="label mb-0">Mô tả khóa học</label>
+                                                                <label class="label mb-0">Mô tả khóa học<sup className="cl-d">(*)</sup></label>
                                                                 <div class="input-group">
                                                                     <textarea class="form-control back-ground" rows="5" id="example-textarea"
                                                                         ref={DescriptionRef} value={Description} onChange={e => setDescription(e.target.value)}>

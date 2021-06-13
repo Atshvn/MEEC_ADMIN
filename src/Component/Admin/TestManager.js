@@ -252,6 +252,7 @@ export const TestManager = () => {
                     Status: Status
                 }
             })
+            newData.length === 0 && Alertwarning("Không có bài thi nào đang diễn ra")
             setDataLock(newData)
         } catch (error) {
             console.log('Failed to fetch: ', error);
@@ -321,6 +322,13 @@ export const TestManager = () => {
                 </button><button
                     className="btn btn-sm btn-danger" onClick={e => clickDelete({ row })}>Xóa
                 </button></span>)
+        },  
+        {
+            Header: "STT",
+            accessor: "content",
+            width: 50,
+            Cell: (row) => <span>{row.index + 1}</span>,
+            
         },
         {
             Header: "Tên bài kiểm tra",
@@ -390,6 +398,13 @@ export const TestManager = () => {
             Cell: ({ row }) => (<span><button
                     className="btn btn-sm btn-danger" onClick={e => clickDelete2({ row })}> <i class="fas fa-lock pr-2"></i>Khóa
                 </button></span>)
+        },  
+        {
+            Header: "STT",
+            accessor: "content",
+            width: 50,
+            Cell: (row) => <span>{row.index + 1}</span>,
+            
         },
         {
             Header: "Tên bài kiểm tra",
@@ -475,7 +490,7 @@ export const TestManager = () => {
                                                     <div className="row ">
                                                         <div class="col-sm-12 col-md-4">
                                                             <div class="form-group">
-                                                                <label class="label mb-0">Tên bài kiểm tra</label>
+                                                                <label class="label mb-0">Tên bài kiểm tra<sup className="cl-d">(*)</sup></label>
                                                                 <div class="input-group">
                                                                     <input type="text" class="form-control back-ground"
                                                                         ref={TestNameRef} value={TestName} onChange={e => setTestName(e.target.value)} />
@@ -484,7 +499,7 @@ export const TestManager = () => {
                                                         </div>
                                                         <div class="col-sm-12 col-md-4">
                                                             <div class="form-group">
-                                                                <label class="label mb-0">Thời gian thi (phút)</label>
+                                                                <label class="label mb-0">Thời gian thi (phút)<sup className="cl-d">(*)</sup></label>
                                                                 <div class="input-group">
                                                                     <input type="number" class="form-control back-ground"
                                                                         ref={TestTimeRef} value={TestTime} onChange={e => setTestTime(e.target.value)} />
@@ -493,7 +508,7 @@ export const TestManager = () => {
                                                         </div>
                                                         <div class="col-sm-12 col-md-4">
                                                             <div class="form-group">
-                                                                <label class="label mb-0">Số lượng câu hỏi</label>
+                                                                <label class="label mb-0">Số lượng câu hỏi<sup className="cl-d">(*)</sup></label>
                                                                 <div class="input-group">
                                                                     <input type="number" class="form-control back-ground"
                                                                         ref={TotalQuestionRef} value={TotalQuestion} onChange={e => setTotalQuestion(e.target.value)} />
@@ -502,7 +517,7 @@ export const TestManager = () => {
                                                         </div>
                                                         <div class="col-sm-12 col-md-6">
                                                             <div class="form-group">
-                                                                <label class="label mb-0">Khóa học</label>
+                                                                <label class="label mb-0">Khóa học<sup className="cl-d">(*)</sup></label>
                                                                 <div class="input-group">
                                                                     <SelectCourse
                                                                         onSelected={e => setCourseID(e.value)}
@@ -514,7 +529,7 @@ export const TestManager = () => {
                                                         </div>
                                                         <div class="col-sm-12 col-md-6">
                                                             <div class="form-group">
-                                                                <label class="label mb-0">Ngày thi</label>
+                                                                <label class="label mb-0">Ngày thi<sup className="cl-d">(*)</sup></label>
                                                                 <div class="input-group SelectDatetime">
                                                                     <DateTimePicker className="form-control"
                                                                         onChange={date => setTestDate(date)}
@@ -611,7 +626,7 @@ export const TestManager = () => {
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div className="table-responsive font-16" style={{ color: '#555', zIndex: '0' }}>
+                                                <div className={dataLock.length > 0 ? "table-responsive font-16" : "display-none"} style={{ color: '#555', zIndex: '0' }}>
                                                     <DataTable
                                                         data={dataLock}
                                                         columns={columns2}
