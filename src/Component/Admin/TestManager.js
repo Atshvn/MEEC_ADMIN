@@ -35,6 +35,7 @@ export const TestManager = () => {
     const [CourseSearch2, setCourseSearch2] = useState(0);
     const [DataCourse, setDataCourse] = useState([]);
     const [Edit, setEdit] = useState(false)
+    const [dateNow, setDateNow] = useState(new Date())
 
     const MEEC_Course_List = async () => {
         try {
@@ -154,6 +155,11 @@ export const TestManager = () => {
             Alertwarning("Hãy chọn khóa học")
             return
         }
+        if(TestDate.getTime() < dateNow.getTime()){
+            Alertwarning("Thời gian thi phải lớn hơn hiện tại")
+            return
+        }
+
         setEdit(false)
         setDisableBtn(true)
         const obj = {
@@ -372,17 +378,16 @@ export const TestManager = () => {
         MEEC_Test_Delete(item.row._original.testId);
     }
     const clickexcel = () => {
-        ExportExcel(newData, "Danh-sach-cau-hoi");
+        ExportExcel(newData, "Danh-sach-bai thi");
     }
 
     const newData = data.map(i => {
         return {
-            "Câu hỏi": i.content,
-            "Đáp án 1": i.answerA,
-            "Đáp án 2": i.answerB,
-            "Đáp án 3": i.answerC,
-            "Đáp án 4": i.answerD,
-            "Đáp án đúng": i.corectAns,
+            "Bài thi": i.testName,
+            "Khóa": i.courseName,
+            "Thời gian": i.time,
+            "Ngày thi": i.dateTest,
+            "Số lượng câu hỏi": i.totalQuestion
 
         }
     })

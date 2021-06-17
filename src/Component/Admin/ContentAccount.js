@@ -31,6 +31,7 @@ export const ContentAccount = () => {
     const [dataGV, setDataGV] = useState([])
     const [hinddenCoures, setHinddenCoures] = useState(true)
     const [dataTable, setDataTable] = useState([])
+    const [dateNow, setDateNow] = useState(new Date())
     useEffect(() => {
         MEEC_Gender_Local()
         MEEC_Level_Local()
@@ -286,6 +287,10 @@ export const ContentAccount = () => {
         if (SelectCourseId === 0 && !hinden) {
             Alertwarning("Vui lòng chọn khóa học")
             return;
+        }
+        if(BirthDay.getTime() > dateNow.getTime()){
+            Alertwarning("Ngày sinh không được lớn hơn hiện tại")
+            return
         }
 
         const pr = {

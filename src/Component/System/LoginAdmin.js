@@ -58,7 +58,7 @@ export const LoginAdmin = () => {
                 Alerterror("Tên đăng nhập hoặc mật khẩu không đúng");
                 return;
             }
-            if(response.roleId === 2){
+            if(response.roleId === 2 || response.roleId === 3){
                 Alerterror("Bạn không có quyền sử dụng chức năng này");
                 return;
             }
