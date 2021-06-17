@@ -336,7 +336,7 @@ export const ContentAccount = () => {
                                     <li class="nav-item">
                                         <a href="#home" data-toggle="tab" aria-expanded="false" class="nav-link " >
                                             <span class="d-block d-sm-none"><i class="mdi mdi-home-variant-outline font-18"></i></span>
-                                            <span class="d-none d-sm-block">Kích hoạt tài khoản</span>
+                                            <span class="d-none d-sm-block">Danh sách & kích hoạt tài khoản</span>
                                         </a>
                                     </li>
 
