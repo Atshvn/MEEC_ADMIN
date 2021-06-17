@@ -1,5 +1,4 @@
-import { Link , useHistory} from "react-router-dom"
-
+import { Link , NavLink, useHistory} from "react-router-dom"
 export const TopMenuAdmin = () => {
     const history = useHistory();
     const AdminInfor = JSON.parse(localStorage.getItem("AdminInfor"));
@@ -76,44 +75,44 @@ export const TopMenuAdmin = () => {
                         <ul className="metismenu" id="side-menu">
                             <li className="menu-title">Menu</li>
                             <li>
-                                <Link to="/main" className="waves-effect">
+                                <NavLink to="/main" activeClassName="active" className="waves-effect">
                                     <i className="ion-md-speedometer" />
                                     <span>Quản lý tài khoản</span>
                                     <span className="menu-arrow" />
-                                </Link>
+                                </NavLink>
                                
                             </li>
                             <li>
-                                <Link to='/test' className="waves-effect">
+                                <NavLink to='/test' activeClassName="active" className="waves-effect">
                                     <i className="ion-md-basket" />
                                     <span>Quản lý bài thi </span>
                                     <span className="menu-arrow" />
-                                </Link>
-                                <Link to="/question" className="waves-effect">
+                                </NavLink>
+                                <NavLink to="/question" activeClassName="active" className="waves-effect">
                                     <i className="ion-md-basket" />
                                     <span> Ngân hàng câu hỏi </span>
                                     <span className="menu-arrow" />
-                                </Link>
-                                <Link to="/course" className="waves-effect">
+                                </NavLink>
+                                <NavLink to="/course" activeClassName="active" className="waves-effect">
                                     <i className="ion-md-basket" />
                                     <span> Quản lý khóa học </span>
                                     <span className="menu-arrow" />
-                                </Link>
-                                <Link to="/schedule" className="waves-effect">
+                                </NavLink>
+                                <NavLink to="/schedule" activeClassName="active" className="waves-effect">
                                     <i className="ion-md-basket" />
                                     <span> Quản lý lịch học </span>
                                     <span className="menu-arrow" />
-                                </Link>
-                                <Link to="/result" className="waves-effect">
+                                </NavLink>
+                                <NavLink to="/result" activeClassName="active" className="waves-effect">
                                     <i className="ion-md-basket" />
                                     <span>Kết quả thi</span>
                                     <span className="menu-arrow" />
-                                </Link>
-                                <Link to="/mail" className="waves-effect">
+                                </NavLink>
+                                <NavLink to="/mail" activeClassName="active" className="waves-effect">
                                     <i className="ion-md-basket" />
                                     <span>Góp ý và tư vấn</span>
                                     <span className="menu-arrow" />
-                                </Link>
+                                </NavLink>
                                
                             </li>
                             
